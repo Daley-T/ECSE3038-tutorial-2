@@ -25,3 +25,15 @@ def avg_temp(array):
     print("\nAverage Temp. = " ,avg)
 
 avg_temp(devices)
+
+
+def hottest(array):
+    hotter:float = 0.0
+    index:int = 0
+    for i in range(len(array)):
+        if devices[i]["temp"] > hotter:
+            hotter = devices[i]["temp"]
+            index = i
+    print("\nHottest Temp Dictionary:\n",devices[index])
+
+hottest(devices)
