@@ -6,34 +6,56 @@ readings = [
     {"name": "patio",      "room": "outside", "temp": 29.8, "online": True},
 ]
 
-devices = readings.copy()
+device = readings.copy()
 
 def list_devices(array):
-    print("Device Name" , " " , "Temperature")
+    print("\nDevice Name" , " " , "Temperature")
     for i in range(len(array)):
         print(array[i]["name"] , " " ,array[i]["temp"])
 
-list_devices(devices)
+list_devices(device)
 
 
 def avg_temp(array):
     avg:float = 0.0
     new_sum:float = 0.0
     for i in range(len(array)):
-        new_sum = new_sum + devices[i]["temp"]
+        new_sum = new_sum + device[i]["temp"]
         avg = round((new_sum / (len(array))),2)
     print("\nAverage Temp. = " ,avg)
 
-avg_temp(devices)
+avg_temp(device)
 
 
 def hottest(array):
     hotter:float = 0.0
     index:int = 0
     for i in range(len(array)):
-        if devices[i]["temp"] > hotter:
-            hotter = devices[i]["temp"]
+        if device[i]["temp"] > hotter:
+            hotter = device[i]["temp"]
             index = i
-    print("\nHottest Temp Dictionary:\n",devices[index])
+    print("\nHottest Temp Dictionary:\n",device[index])
 
-hottest(devices)
+hottest(device)
+
+
+def to_status(array):
+    print("\nSearch device:")
+    dev_srch = input()
+    index:int = (len(array))+1
+
+    for i in range (len(array)):
+        if device[i]["name"] == dev_srch:
+            index = i
+    if(index == (len(array))+1):
+        print("Device not found")
+
+    new_dict =  {"device":(array[index]["name"]) , "status":(array[index]["online"]), "celsius":(array[index]["temp"])}
+    if array[index]["online"] == True:
+        new_dict |= {"status":"ok"}
+    else:
+        new_dict |= {"status":"offline"}
+
+    print(new_dict)
+    
+to_status(device)
