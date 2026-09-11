@@ -59,3 +59,22 @@ def to_status(array):
     print(new_dict)
     
 to_status(device)
+
+
+def by_room(array):
+    print("\nDevices by room:")
+
+    room_sort = {}
+    for i in range(len(array)):
+        for rooms in device:
+            room = array[i]["room"]
+            name = array[i]["name"]
+
+        if room not in room_sort:
+            room_sort[room] = [name]
+        else:
+            room_sort[room].append(name)
+
+    print(room_sort)
+
+by_room(device) 
